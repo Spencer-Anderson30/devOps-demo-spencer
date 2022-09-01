@@ -37,6 +37,7 @@ app.get('/api/students', (req, res) => {
 
 app.post('/api/students', (req, res) => {
    let {name} = req.body
+   rollbar.log(name)
 
    const index = students.findIndex(student => {
        return student === name
@@ -64,6 +65,6 @@ app.delete('/api/students/:index', (req, res) => {
     res.status(200).send(students)
 })
 
-const port = process.env.PORT || 5050
+const port = process.env.PORT
 
 app.listen(port, () => console.log(`Server listening on ${port}`))
